@@ -1,0 +1,82 @@
+<form [formGroup]="clientForm" (ngSubmit)="addClient()">
+  <!-- Client ID -->
+  <label for="clientID">Client ID:</label>
+  <input id="clientID" formControlName="clientID" />
+  <div *ngIf="f['clientID'].touched && f['clientID'].invalid">
+    <small *ngIf="f['clientID'].errors?.['required']">Client ID is required.</small>
+    <small *ngIf="f['clientID'].errors?.['pattern']">Client ID must be a number.</small>
+  </div>
+
+  <!-- Name -->
+  <label for="name">Name:</label>
+  <input id="name" formControlName="name" />
+  <div *ngIf="f['name'].touched && f['name'].invalid">
+    <small *ngIf="f['name'].errors?.['required']">Name is required.</small>
+    <small *ngIf="f['name'].errors?.['minlength']">Name must be at least 3 characters.</small>
+  </div>
+
+  <!-- Gender -->
+  <label for="gender">Gender:</label>
+  <select id="gender" formControlName="gender">
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+    <option value="Unspecified">Unspecified</option>
+  </select>
+
+  <!-- Fitness Program -->
+  <label for="fitnessProgram">Fitness Program:</label>
+  <select id="fitnessProgram" formControlName="fitnessProgram">
+    <option value="fat loss">Fat loss</option>
+    <option value="senior fitness">Senior fitness</option>
+    <option value="muscle gain">Muscle gain</option>
+    <option value="pre/postnatal fitness">Pre/Postnatal fitness</option>
+    <option value="contest preparation">Contest preparation</option>
+    <option value="overall fitness">Overall fitness</option>
+  </select>
+
+  <!-- Date of Birth -->
+  <label for="dob">Date of Birth:</label>
+  <input type="date" id="dob" formControlName="dob" />
+  <div *ngIf="f['dob'].touched && f['dob'].invalid">
+    <small *ngIf="f['dob'].errors?.['required']">Date of Birth is required.</small>
+  </div>
+
+  <!-- Contact Information -->
+  <fieldset formGroupName="contactInfo">
+    <legend>Contact Info</legend>
+
+    <label for="phoneNumber">Phone Number:</label>
+    <input id="phoneNumber" formControlName="phoneNumber" />
+    <div *ngIf="f['contactInfo'].get('phoneNumber')?.touched && f['contactInfo'].get('phoneNumber')?.invalid">
+      <small *ngIf="f['contactInfo'].get('phoneNumber')?.errors?.['required']">Phone number is required.</small>
+      <small *ngIf="f['contactInfo'].get('phoneNumber')?.errors?.['pattern']">Enter a valid 10-digit phone number.</small>
+    </div>
+
+    <label for="address">Address:</label>
+    <input id="address" formControlName="address" />
+    <p></p>
+    <label for="email">Email:</label>
+    <input id="email" formControlName="email" />
+    <div *ngIf="f['contactInfo'].get('email')?.touched && f['contactInfo'].get('email')?.invalid">
+      <small *ngIf="f['contactInfo'].get('email')?.errors?.['email']">Enter a valid email address.</small>
+    </div>
+  </fieldset>
+
+  <!-- Dates -->
+  <label for="joinedDate">Joined Date:</label>
+  <input type="date" id="joinedDate" formControlName="joinedDate" />
+
+  <label for="endingDate">Ending Date:</label>
+  <input type="date" id="endingDate" formControlName="endingDate" />
+
+  <!-- VIP -->
+  <label for="isVIP">VIP Client:</label>
+  <input type="checkbox" id="isVIP" formControlName="isVIP" />
+
+  <!-- Notes -->
+  <label for="specialHealthNotes">Special Health Notes:</label>
+  <textarea id="specialHealthNotes" formControlName="specialHealthNotes"></textarea>
+
+  <!-- Submit Button -->
+  <button type="submit" [disabled]="clientForm.invalid">Add Client</button>
+</form>

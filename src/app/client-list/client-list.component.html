@@ -1,0 +1,29 @@
+<div class="client-list-container">
+  <!-- No Clients Message -->
+  <div *ngIf="clients.length === 0">
+    <p>No clients to display.</p>
+  </div>
+
+  <!-- Client List -->
+  <div *ngFor="let client of clients" class="client-card">
+    <h3>{{ client.name }} (ID: {{ client.clientID }})</h3>
+    <p><strong>Gender:</strong> {{ client.gender }}</p>
+    <p><strong>Fitness Program:</strong> {{ client.fitnessProgram }}</p>
+
+    <!-- Contact Information -->
+    <p><strong>Email:</strong> {{ client.contactInfo.email || 'None given' }}</p>
+    <p><strong>Phone:</strong> {{ client.contactInfo.phoneNumber || 'Not provided' }}</p>
+    <p><strong>Address:</strong> {{ client.contactInfo.address || 'Not provided' }}</p>
+
+    <!-- Additional Details -->
+    <p><strong>Date of Birth:</strong> {{ client.dob | date:'longDate' }}</p>
+    <p><strong>Joined Date:</strong> {{ client.joinedDate | date:'longDate' }}</p>
+    <p><strong>Ending Date:</strong> {{ client.endingDate | date:'longDate' }}</p>
+    <p><strong>Special Health Notes:</strong> {{ client.specialHealthNotes || 'None given' }}</p>
+    <p><strong>VIP:</strong> {{ client.isVIP ? 'Yes' : 'No' }}</p>
+
+    <!-- Actions -->
+    <button (click)="deleteClient(client.clientID)">Delete</button>
+    <button (click)="editClient(client)">Edit</button>
+  </div>
+</div>

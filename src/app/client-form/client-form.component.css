@@ -1,0 +1,18 @@
+form {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin: auto;
+}
+
+input,
+select,
+textarea,
+button {
+  margin-bottom: 10px;
+}
+
+small {
+  color: red;
+  font-size: 0.8rem;
+}
